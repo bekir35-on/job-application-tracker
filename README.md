@@ -42,7 +42,7 @@ New applications are saved to `data/applications.csv`. This file is listed in `.
 - Import applications from an existing CSV file
 - Export a PDF report
 - Add follow-up reminders
-- Add automated tests
+
 
 ## License
 
