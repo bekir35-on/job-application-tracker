@@ -27,6 +27,7 @@ python3 tracker.py list
 | `python3 tracker.py list` | Shows all applications |
 | `python3 tracker.py stats` | Shows the total and the number for each status |
 | `python3 tracker.py add "Company" "Role" --source "Reed" --notes "Short note"` | Saves a new application |
+| `python3 tracker.py update 1 "In process"` | Changes the status of an application |
 
 ## Data and privacy
 
@@ -36,7 +37,7 @@ New applications are saved to `data/applications.csv`. This file is listed in `.
 
 ## Planned work
 
-- Update the status of an application
+
 - Filter the list by status
 - Import applications from an existing CSV file
 - Export a PDF report

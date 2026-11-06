@@ -9,6 +9,7 @@ from pathlib import Path
 DATA_FILE = Path("data/applications.csv")
 SAMPLE_FILE = Path("data/sample_applications.csv")
 FIELDS = ["id", "company", "role", "source", "status", "applied_date", "notes"]
+STATUSES = ["Applied", "In process", "Offer", "Rejected", "Withdrawn"]
 
 
 def active_file():
@@ -62,6 +63,25 @@ def add_application(path, company, role, source, notes):
     return application
 
 
+def save_applications(path, applications):
+    """Write all applications back to the CSV file."""
+    with open(path, "w", newline="", encoding="utf-8") as file:
+        writer = csv.DictWriter(file, fieldnames=FIELDS, lineterminator="\n")
+        writer.writeheader()
+        writer.writerows(applications)
+
+
+def update_status(path, application_id, status):
+    """Change the status of one application and return it."""
+    applications = load_applications(path) if path.exists() else []
+    for app in applications:
+        if app["id"] == application_id:
+            app["status"] = status
+            save_applications(path, applications)
+            return app
+    return None
+
+
 def build_parser():
     """Define the commands the tool accepts."""
     parser = argparse.ArgumentParser(description="Track job applications.")
@@ -73,6 +93,9 @@ def build_parser():
     add_parser.add_argument("role", help="job title")
     add_parser.add_argument("--source", default="", help="where you found the job")
     add_parser.add_argument("--notes", default="", help="a short note")
+    update_parser = subparsers.add_parser("update", help="change an application status")
+    update_parser.add_argument("id", help="application number")
+    update_parser.add_argument("status", choices=STATUSES, help="new status")
     return parser
 
 
@@ -85,6 +108,12 @@ def main():
         list_applications(load_applications(active_file()))
     elif args.command == "stats":
         show_stats(load_applications(active_file()))
+    elif args.command == "update":
+        application = update_status(DATA_FILE, args.id, args.status)
+        if application:
+            print(f"Updated application {application['id']}: {application['status']}")
+        else:
+            print(f"No application found with id {args.id}")
 
 
 if __name__ == "__main__":
