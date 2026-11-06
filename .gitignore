@@ -1,0 +1,11 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Private data: never commit real applications
+data/applications.csv
+.env
+
+# macOS
+.DS_Store

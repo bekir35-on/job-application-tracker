@@ -1,0 +1,9 @@
+id,company,role,source,status,applied_date,notes
+1,Acme Data Ltd,Junior Data Analyst,LinkedIn,Applied,2026-10-01,Remote role
+2,Sample Retail Group,Reporting Analyst,Reed,Rejected,2026-10-03,Reply after one week
+3,Demo Transport Co,MI Analyst,Company website,In process,2026-10-06,First interview booked
+4,Example Charity,Data Officer,Indeed,Applied,2026-10-09,Part-time role
+5,Placeholder Council,BI Analyst,Company website,Rejected,2026-10-12,Not shortlisted
+6,Mock Energy Ltd,Data Analyst,LinkedIn,Offer,2026-10-15,Offer received
+7,Test Logistics Co,Operations Analyst,Reed,Withdrawn,2026-10-18,Salary too low
+8,Fictional Foods Ltd,Data Administrator,Indeed,Applied,2026-10-21,Follow up next week
