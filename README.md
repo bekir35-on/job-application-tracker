@@ -1,8 +1,8 @@
 # Job Application Tracker
 
 A small command-line tool for tracking job applications. It saves each application in a CSV file and shows a list or a summary by status.
-
-I am tracking more than 180 job applications, so I started this project to make that work easier.
+I started this project to make tracking my own job search easier.
+I started this project to make that work easier.
 
 ## Who it is for
 
