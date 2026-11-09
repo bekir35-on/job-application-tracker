@@ -36,7 +36,7 @@ python3 tracker.py list
 New applications are saved to `data/applications.csv`. This file is listed in `.gitignore`, so your real data stays on your computer.
 
 ## Planned work
-
+See [ROADMAP.md](ROADMAP.md) for the full plan.
 
 - Filter the list by status
 - Import applications from an existing CSV file
