@@ -9,10 +9,10 @@ This file lists the work I plan for the tracker. I add one small feature at a ti
 - [x] Save a new application (`add`)
 - [x] Change the status of an application (`update`)
 - [x] Automated tests with `unittest`
+- [x] Filter the list by status (`list --status`)
 
 ## Next
 
-- [ ] Filter the list by status, for example `list --status "Applied"`
 - [ ] Import applications from an existing CSV file
 - [ ] Show follow-up reminders for applications with no reply after 14 days
 - [ ] Export a short PDF report
