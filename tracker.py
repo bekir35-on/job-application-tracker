@@ -28,6 +28,10 @@ def list_applications(applications):
     for app in applications:
         print(f"{app['id']:>3}  {app['status']:<11}  {app['company']} - {app['role']}")
 
+def filter_by_status(applications, status):
+    """Return only the applications with the given status."""
+    return [app for app in applications if app["status"] == status]    
+
 
 def show_stats(applications):
     """Print the total and the number of applications for each status."""
@@ -86,7 +90,8 @@ def build_parser():
     """Define the commands the tool accepts."""
     parser = argparse.ArgumentParser(description="Track job applications.")
     subparsers = parser.add_subparsers(dest="command", required=True)
-    subparsers.add_parser("list", help="show all applications")
+    list_parser = subparsers.add_parser("list", help="show all applications")
+    list_parser.add_argument("--status", choices=STATUSES, help="show only this status")
     subparsers.add_parser("stats", help="show totals by status")
     add_parser = subparsers.add_parser("add", help="add a new application")
     add_parser.add_argument("company", help="company name")
@@ -105,7 +110,10 @@ def main():
         application = add_application(DATA_FILE, args.company, args.role, args.source, args.notes)
         print(f"Added application {application['id']}: {application['company']}")
     elif args.command == "list":
-        list_applications(load_applications(active_file()))
+        applications = load_applications(active_file())
+        if args.status:
+            applications = filter_by_status(applications, args.status)
+        list_applications(applications)
     elif args.command == "stats":
         show_stats(load_applications(active_file()))
     elif args.command == "update":

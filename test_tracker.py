@@ -4,7 +4,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from tracker import add_application, load_applications, next_id, update_status
+from tracker import add_application, filter_by_status, load_applications, next_id, update_status
 
 
 class TrackerTests(unittest.TestCase):
@@ -38,6 +38,19 @@ class TrackerTests(unittest.TestCase):
     def test_update_status_returns_none_for_unknown_id(self):
         add_application(self.path, "Acme", "Analyst", "Reed", "")
         self.assertIsNone(update_status(self.path, "9", "Offer"))
+
+    def test_filter_by_status_keeps_only_matching_records(self):
+        applications = [
+            {"id": "1", "status": "Applied"},
+            {"id": "2", "status": "Rejected"},
+            {"id": "3", "status": "Rejected"},
+        ]
+        result = filter_by_status(applications, "Rejected")
+        self.assertEqual([app["id"] for app in result], ["2", "3"])
+
+    def test_filter_by_status_returns_empty_list_when_no_match(self):
+        applications = [{"id": "1", "status": "Applied"}]
+        self.assertEqual(filter_by_status(applications, "Offer"), [])
 
 
 if __name__ == "__main__":
